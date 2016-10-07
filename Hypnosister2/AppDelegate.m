@@ -23,11 +23,25 @@
     self.window.rootViewController = viewController;
     self.window.backgroundColor = [UIColor whiteColor];
 
-    CGRect newFrame = self.window.bounds;
-    BNRHypnosisView *firstView = [[BNRHypnosisView alloc] initWithFrame:newFrame];
-    firstView.userInteractionEnabled = true;
+    // Create CGRects for frames
+    CGRect screenRect = self.window.bounds;
+    CGRect bigRect = screenRect;
+    bigRect.size.width *= 2.0;
+    bigRect.size.height *= 2.0;
     
-    [self.window.rootViewController.view addSubview:firstView];
+    // Create a screen-sized scroll view and add it to the window
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:screenRect];
+    scrollView.userInteractionEnabled = true;
+    [self.window.rootViewController.view addSubview:scrollView];
+    
+    // Create a super-sized hypnosis view and add it to the scroll view
+    BNRHypnosisView *hypnosisView = [[BNRHypnosisView alloc] initWithFrame:bigRect];
+    hypnosisView.userInteractionEnabled = true;
+    [scrollView addSubview:hypnosisView];
+    
+    // Tell the scroll view how big its content area is
+    scrollView.contentSize = bigRect.size;
+    
     [self.window makeKeyAndVisible];
     
     return YES;
