@@ -42,6 +42,18 @@
     [[UIColor lightGrayColor] setStroke];
     // Draw the line
     [path stroke];
+    
+    UIImage *logoImage = [UIImage imageNamed:@"appleLogo.png"];
+    NSLog(@"Image: %@", NSStringFromCGSize(logoImage.size));
+    CGSize newImageSize = CGSizeMake(logoImage.size.width/8, logoImage.size.height/8);
+    NSLog(@"New size: %@", NSStringFromCGSize(logoImage.size));
+    NSLog(@"View Size: %@", NSStringFromCGRect(self.bounds));
+    CGRect imagePosition = CGRectMake(center.x - newImageSize.width/2,
+                                      center.y - newImageSize.height/2,
+                                      newImageSize.width,
+                                      newImageSize.height);
+    NSLog(@"ImagePosition: %@", NSStringFromCGRect(imagePosition));
+    [logoImage drawInRect:imagePosition];
 }
 
 
