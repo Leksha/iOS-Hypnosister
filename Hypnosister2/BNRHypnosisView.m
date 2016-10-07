@@ -40,9 +40,15 @@
 
     path.lineWidth = 10;
     [[UIColor lightGrayColor] setStroke];
+    
     // Draw the line
     [path stroke];
-    
+   
+    // Add Shadow
+    CGContextRef currentContext = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(UIGraphicsGetCurrentContext());
+    CGContextSetShadow(currentContext, CGSizeMake(4, 9), 5);
+
     UIImage *logoImage = [UIImage imageNamed:@"appleLogo.png"];
     NSLog(@"Image: %@", NSStringFromCGSize(logoImage.size));
     CGSize newImageSize = CGSizeMake(logoImage.size.width/8, logoImage.size.height/8);
@@ -54,6 +60,9 @@
                                       newImageSize.height);
     NSLog(@"ImagePosition: %@", NSStringFromCGRect(imagePosition));
     [logoImage drawInRect:imagePosition];
+    
+    // Reset current state
+    CGContextRestoreGState(currentContext);
 }
 
 
