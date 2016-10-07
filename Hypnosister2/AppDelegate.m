@@ -25,8 +25,9 @@
 
     CGRect newFrame = self.window.bounds;
     BNRHypnosisView *firstView = [[BNRHypnosisView alloc] initWithFrame:newFrame];
+    firstView.userInteractionEnabled = true;
     
-    [self.window addSubview:firstView];
+    [self.window.rootViewController.view addSubview:firstView];
     [self.window makeKeyAndVisible];
     
     return YES;

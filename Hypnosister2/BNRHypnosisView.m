@@ -58,7 +58,7 @@
 
     UIImage *logoImage = [UIImage imageNamed:@"appleLogo.png"];
     NSLog(@"Image: %@", NSStringFromCGSize(logoImage.size));
-    CGSize newImageSize = CGSizeMake(logoImage.size.width/8, logoImage.size.height/8);
+    CGSize newImageSize = CGSizeMake(logoImage.size.width/12, logoImage.size.height/12);
     NSLog(@"New size: %@", NSStringFromCGSize(logoImage.size));
     NSLog(@"View Size: %@", NSStringFromCGRect(self.bounds));
     CGRect imagePosition = CGRectMake(center.x - newImageSize.width/2,
@@ -85,4 +85,8 @@
     self.circleColor = randomColor;
 }
 
+- (void)setCircleColor:(UIColor *)circleColor {
+    _circleColor = circleColor;
+    [self setNeedsDisplay];
+}
 @end
